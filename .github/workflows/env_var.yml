@@ -1,4 +1,4 @@
-name: "Environment Variables"
+name: "Environment Variables JK"
 
 on:
   push:
