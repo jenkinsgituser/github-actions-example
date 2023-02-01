@@ -28,7 +28,7 @@ jobs:
           echo "My Password is ${{ secrets.password }}" | sed 's/./& /g'
   prod-task:
     runs-on: ubuntu-latest
-    #environment: prod
+    environment: prod
     steps:
       # # uses production enviroment secrets over repository secrets
       - name: Run node build process
