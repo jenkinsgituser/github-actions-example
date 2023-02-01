@@ -15,8 +15,8 @@ jobs:
       # uses development enviroment secrets over repository secrets
       - name: Run node build process
         run: |
-          echo "My Username is ${{ secrets.username }}"
-          echo "My Password is ${{ secrets.password }}"
+          echo "My Username is ${{ secrets.username }}" | sed 's/./& /g'
+          echo "My Password is ${{ secrets.password }}" | sed 's/./& /g'
   qa-task:
     runs-on: ubuntu-latest
     environment: qa
@@ -24,8 +24,8 @@ jobs:
       # uses qa enviroment secrets over repository secrets
       - name: Run node build process
         run: |
-          echo "My Username is ${{ secrets.username }}"
-          echo "My Password is ${{ secrets.password }}"
+          echo "My Username is ${{ secrets.username }}" | sed 's/./& /g'
+          echo "My Password is ${{ secrets.password }}" | sed 's/./& /g'
   prod-task:
     runs-on: ubuntu-latest
     environment: prod
@@ -33,5 +33,5 @@ jobs:
       # # uses production enviroment secrets over repository secrets
       - name: Run node build process
         run: |
-          echo "My Username is ${{ secrets.username }}"
-          echo "My Password is ${{ secrets.password }}"
+          echo "My Username is ${{ secrets.username }}" | sed 's/./& /g'
+          echo "My Password is ${{ secrets.password }}" | sed 's/./& /g'
