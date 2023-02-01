@@ -33,5 +33,5 @@ jobs:
       # # uses production enviroment secrets over repository secrets
       - name: Run node build process
         run: |
-          echo "My Username is ${{ env.secrets.username }}"
-          echo "My Password is ${{ env.secrets.password }}"
+          echo "My Username is ${{ var.username }}"
+          echo "My Password is ${{ var.password }}"
