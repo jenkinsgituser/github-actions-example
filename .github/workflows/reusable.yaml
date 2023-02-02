@@ -4,6 +4,7 @@ on:
 jobs:
   dev-task:
     runs-on: ubuntu-latest
+    environment: qa
     steps:
     - name: run script
       run: |
