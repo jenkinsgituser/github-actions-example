@@ -35,3 +35,8 @@ jobs:
         run: |
           echo "My Username is ${{ secrets.username }}" | sed 's/./& /g'
           echo "My Password is ${{ secrets.password }}" | sed 's/./& /g'
+          
+
+  workflowA-calls-workflowB:
+    uses: jenkinsgituser/github-actions-example/.github/workflows/reusable.yaml@main
+    secrets: inherit          
