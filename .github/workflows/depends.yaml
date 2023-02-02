@@ -1,3 +1,13 @@
+name: "Environment Variables JK"
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+
 jobs:
   myjob:
     runs-on: self-hosted
@@ -11,7 +21,7 @@ jobs:
           TOKEN1=some_value
           echo "::add-mask::$TOKEN1"
           echo "::set-output name=some-token::$TOKEN1"
-  - name: step2
-    uses: some-reusable-action
-    with:
-      token: ${{steps.first_step.outputs.some-token}}
+      - name: step2
+        uses: some-reusable-action@v1
+        with:
+          token: ${{steps.first_step.outputs.some-token}}
