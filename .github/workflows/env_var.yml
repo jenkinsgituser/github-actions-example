@@ -39,4 +39,6 @@ jobs:
 
   workflowA-calls-workflowB:
     uses: jenkinsgituser/github-actions-example/.github/workflows/reusable.yaml@main
-    secrets: inherit          
+    with:
+      config-path: .github/labeler.yml
+    secrets: inherit
