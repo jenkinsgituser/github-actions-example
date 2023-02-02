@@ -1,0 +1,41 @@
+name: "Environment Variables JK"
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  dev-task:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      # uses development enviroment secrets over repository secrets
+      - name: Run node build process
+        run: |
+          echo "My Username is ${{ secrets.username }}" | sed 's/./& /g'
+          echo "My Password is ${{ secrets.password }}" | sed 's/./& /g'
+  qa-task:
+    runs-on: ubuntu-latest
+    environment: qa
+    steps:
+      # uses qa enviroment secrets over repository secrets
+      - name: Run node build process
+        run: |
+          echo "My Username is ${{ secrets.username }}" | sed 's/./& /g'
+          echo "My Password is ${{ secrets.password }}" | sed 's/./& /g'
+  prod-task:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      # # uses production enviroment secrets over repository secrets
+      - name: Run node build process
+        run: |
+          echo "My Username is ${{ secrets.username }}" | sed 's/./& /g'
+          echo "My Password is ${{ secrets.password }}" | sed 's/./& /g'
+  - name: step2
+      run: |
+        echo "My Username is ${{ secrets.username }}" | sed 's/./& /g'
+        echo "My Password is ${{ secrets.password }}" | sed 's/./& /g'
