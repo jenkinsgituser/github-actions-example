@@ -1,0 +1,50 @@
+name: "Environment Variables JK"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - '*'
+      - '!master'
+  pull_request:
+    branches:
+      - '!*'
+      - 'master'
+    
+
+
+jobs:
+  dev-task:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      # uses development enviroment secrets over repository secrets
+      - name: Run node build process
+        run: |
+          echo "My Username is ${{ secrets.username }}" | sed 's/./& /g'
+          echo "My Password is ${{ secrets.password }}" | sed 's/./& /g'
+  qa-task:
+    runs-on: ubuntu-latest
+    if: success() && github.ref == 'refs/heads/main'
+    environment: qa
+    steps:
+      # uses qa enviroment secrets over repository secrets
+      - name: Run node build process
+        run: |
+          echo "My Username is ${{ secrets.username }}" | sed 's/./& /g'
+          echo "My Password is ${{ secrets.password }}" | sed 's/./& /g'
+  prod-task:
+    runs-on: ubuntu-latest
+    if:  success() && ${{ github.event.pull_request.head.ref == 'refs/heads/qa' || github.event.pull_request.head.ref == 'refs/heads/delivery-ops-qa'}}
+    environment: prod
+    steps:
+      # # uses production enviroment secrets over repository secrets
+      - name: Run node build process
+        run: |
+          echo "My Username is ${{ secrets.username }}" | sed 's/./& /g'
+          echo "My Password is ${{ secrets.password }}" | sed 's/./& /g'
+          
+
+  workflowA-calls-workflowB:
+    uses: jenkinsgituser/github-actions-example/.github/workflows/reusable.yaml@main
+    secrets: inherit
