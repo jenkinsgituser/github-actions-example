@@ -35,7 +35,8 @@ jobs:
           echo "My Password is ${{ secrets.password }}" | sed 's/./& /g'
   prod-task:
     runs-on: ubuntu-latest
-    if:  success() && ${{ github.event.pull_request.head.ref == 'refs/heads/qa' || github.event.pull_request.head.ref == 'refs/heads/delivery-ops-qa'}}
+    #if:  success() && ${{ github.event.pull_request.head.ref == 'refs/heads/qa' || github.event.pull_request.head.ref == 'refs/heads/uat'}}
+    if: success() && github.ref == 'refs/heads/main'
     environment: prod
     steps:
       # # uses production enviroment secrets over repository secrets
